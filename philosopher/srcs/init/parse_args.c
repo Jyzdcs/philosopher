@@ -6,7 +6,7 @@
 /*   By: kclaudan <kclaudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:00:00 by philosopher       #+#    #+#             */
-/*   Updated: 2025/03/13 17:09:00 by kclaudan         ###   ########.fr       */
+/*   Updated: 2025/03/13 19:21:05 by kclaudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int	parse_args(int argc, char **argv, t_config *config)
 	if (ft_atoi_strict(argv[4], &config->time_to_sleep) != 0)
 		return (printf("Error: Invalid time to sleep\n"));
 	if (argc == 6 && ft_atoi_strict(argv[5], &config->number_of_meals) != 0)
-		return (printf("Error: Invalid number of meals\n"));
+		config->must_eat_count = 1;
+	else
+		config->must_eat_count = 0;
 	return (0);
 }

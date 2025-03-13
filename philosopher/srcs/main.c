@@ -6,7 +6,7 @@
 /*   By: kclaudan <kclaudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:00:00 by philosopher       #+#    #+#             */
-/*   Updated: 2025/03/13 18:26:16 by kclaudan         ###   ########.fr       */
+/*   Updated: 2025/03/13 19:11:38 by kclaudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,11 @@ int	main(int argc, char **argv)
 
 	if (parse_args(argc, argv, &config))
 		return (1);
+	init_simulation(&sim, &config);
+	init_philosophers(&sim);
+	// init_mutexes(&sim);
+	// create_threads(&sim);
+	// join_threads(&sim);
+	// cleanup_simulation(&sim);
 	return (0);
 }

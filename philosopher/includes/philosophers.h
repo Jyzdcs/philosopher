@@ -6,7 +6,7 @@
 /*   By: kclaudan <kclaudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:00:00 by philosopher       #+#    #+#             */
-/*   Updated: 2025/03/13 17:40:06 by kclaudan         ###   ########.fr       */
+/*   Updated: 2025/03/13 19:22:37 by kclaudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct s_philosopher
 {
 	int id;          /* Numéro du philosophe (de 1 à N) */
 	int meals_eaten; /* Compteur de repas consommés */
-	int					last_meal_time;
+	long long			last_meal_time;
 	/* Moment du dernier repas (pour surveiller la mort) */
 	int left_fork;    /* Index de la fourchette à sa gauche */
 	int right_fork;   /* Index de la fourchette à sa droite */
@@ -63,7 +63,7 @@ typedef struct s_simulation
 	/* Flag indiquant si un philosophe est mort (1) ou non (0) */
 	int					all_ate_enough;
 	/* Flag indiquant si tous les philosophes ont assez mangé */
-	int start_time; /* Timestamp de début de la simulation (ms) */
+	long long start_time; /* Timestamp de début de la simulation (ms) */
 }						t_simulation;
 
 /* Prototypes des fonctions d'initialisation */
@@ -92,8 +92,8 @@ void					log_state(t_simulation *sim, int philo_id,
 
 /* Prototypes des fonctions de gestion du temps */
 
-int						get_timestamp_ms(void);
-int						get_elapsed_time(t_simulation *sim);
+long long				get_timestamp_ms(void);
+long long				get_elapsed_time(t_simulation *sim);
 void					precise_sleep(int duration_ms);
 
 /* Prototypes des fonctions de monitoring */

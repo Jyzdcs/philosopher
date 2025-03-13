@@ -6,7 +6,7 @@
 /*   By: kclaudan <kclaudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:00:00 by philosopher       #+#    #+#             */
-/*   Updated: 2025/03/13 15:59:29 by kclaudan         ###   ########.fr       */
+/*   Updated: 2025/03/13 19:13:24 by kclaudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,12 @@
  */
 void	init_simulation(t_simulation *sim, t_config *config)
 {
-	/* À implémenter */
+	sim->config = *config;
+	sim->philosophers = malloc(sizeof(t_philosopher)
+			* config->number_of_philosophers);
+	sim->forks = malloc(sizeof(pthread_mutex_t)
+			* config->number_of_philosophers);
+	sim->start_time = get_timestamp_ms();
+	sim->someone_died = 0;
+	sim->all_ate_enough = 0;
 }
