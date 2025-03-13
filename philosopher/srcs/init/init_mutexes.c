@@ -6,7 +6,7 @@
 /*   By: kclaudan <kclaudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:00:00 by philosopher       #+#    #+#             */
-/*   Updated: 2025/03/13 15:59:29 by kclaudan         ###   ########.fr       */
+/*   Updated: 2025/03/13 19:38:12 by kclaudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,16 @@
  */
 int	init_mutexes(t_simulation *sim)
 {
-	/* À implémenter */
+	int	i;
+
+	i = 0;
+	while (i < sim->config.number_of_philosophers)
+	{
+		pthread_mutex_init(&sim->forks[i], NULL);
+		i++;
+	}
+	pthread_mutex_init(&sim->print_mutex, NULL);
+	pthread_mutex_init(&sim->death_mutex, NULL);
 	return (0);
 }
 
@@ -38,5 +47,14 @@ int	init_mutexes(t_simulation *sim)
  */
 void	destroy_mutexes(t_simulation *sim)
 {
-	/* À implémenter */
+	int i;
+
+	i = 0;
+	while (i < sim->config.number_of_philosophers)
+	{
+		pthread_mutex_destroy(&sim->forks[i]);
+		i++;
+	}
+	pthread_mutex_destroy(&sim->print_mutex);
+	pthread_mutex_destroy(&sim->death_mutex);
 }
