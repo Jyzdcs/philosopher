@@ -1,6 +1,6 @@
 ---
-description: 
-globs: 
+description: Cette regles permet de specifier la norme de code imposer pour chaques fichiers C
+globs: *.c
 alwaysApply: false
 ---
  # Norme 42
