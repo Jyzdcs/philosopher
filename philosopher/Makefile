@@ -6,7 +6,7 @@
 #    By: kclaudan <kclaudan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/13 12:00:00 by philosopher       #+#    #+#              #
-#    Updated: 2025/03/13 15:55:41 by kclaudan         ###   ########.fr        #
+#    Updated: 2025/03/13 17:09:25 by kclaudan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,10 +40,10 @@ all: $(NAME)
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
 	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -I$(INCS_DIR) -c $< -o $@
+	$(CC) -I$(INCS_DIR) -c $< -o $@
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+	$(CC) $(OBJS) -o $(NAME)
 
 clean:
 	rm -rf $(OBJS_DIR)

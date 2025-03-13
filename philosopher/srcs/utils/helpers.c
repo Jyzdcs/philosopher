@@ -6,7 +6,7 @@
 /*   By: kclaudan <kclaudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:00:00 by philosopher       #+#    #+#             */
-/*   Updated: 2025/03/13 15:55:29 by kclaudan         ###   ########.fr       */
+/*   Updated: 2025/03/13 17:24:07 by kclaudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,22 @@
  */
 int	ft_atoi_strict(const char *str, int *result)
 {
-	/* À implémenter */
+	if (!str || !result)
+		return (-1);
+	*result = 0;
+	while (*str == ' ')
+		str++;
+	if (*str == '-')
+		return (-1);
+	if (*str == '+')
+		str++;
+	while (*str >= '0' && *str <= '9')
+	{
+		*result = *result * 10 + (*str - '0');
+		str++;
+	}
+	if (*str != '\0')
+		return (-1);
 	return (0);
 }
 
@@ -34,7 +49,7 @@ int	ft_atoi_strict(const char *str, int *result)
  *
  * Utilise une boucle active pour les délais courts.
  */
-void	ft_usleep(long microseconds)
+void	ft_usleep(int microseconds)
 {
 	/* À implémenter */
 }

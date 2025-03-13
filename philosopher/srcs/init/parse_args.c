@@ -6,7 +6,7 @@
 /*   By: kclaudan <kclaudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:00:00 by philosopher       #+#    #+#             */
-/*   Updated: 2025/03/13 15:59:29 by kclaudan         ###   ########.fr       */
+/*   Updated: 2025/03/13 17:09:00 by kclaudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,17 @@
  */
 int	parse_args(int argc, char **argv, t_config *config)
 {
-	/* À implémenter */
+	if (argc != 5 && argc != 6)
+		return (printf("Error: Invalid number of arguments\n"));
+	if (ft_atoi_strict(argv[1], &config->number_of_philosophers) != 0)
+		return (printf("Error: Invalid number of philosophers\n"));
+	if (ft_atoi_strict(argv[2], &config->time_to_die) != 0)
+		return (printf("Error: Invalid time to die\n"));
+	if (ft_atoi_strict(argv[3], &config->time_to_eat) != 0)
+		return (printf("Error: Invalid time to eat\n"));
+	if (ft_atoi_strict(argv[4], &config->time_to_sleep) != 0)
+		return (printf("Error: Invalid time to sleep\n"));
+	if (argc == 6 && ft_atoi_strict(argv[5], &config->number_of_meals) != 0)
+		return (printf("Error: Invalid number of meals\n"));
 	return (0);
 }
