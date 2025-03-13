@@ -6,7 +6,7 @@
 /*   By: kclaudan <kclaudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:00:00 by philosopher       #+#    #+#             */
-/*   Updated: 2025/03/13 19:05:48 by kclaudan         ###   ########.fr       */
+/*   Updated: 2025/03/13 20:57:30 by kclaudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,17 @@ long long	get_elapsed_time(t_simulation *sim)
  */
 void	precise_sleep(int duration_ms)
 {
-	/* À implémenter */
+	int remaining_time;
+	int sleep_time;
+
+	remaining_time = duration_ms;
+	while (remaining_time > 0)
+	{
+		if (remaining_time > 100)
+			sleep_time = 100;
+		else
+			sleep_time = remaining_time;
+		usleep(sleep_time * 1000);
+		remaining_time -= sleep_time;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: kclaudan <kclaudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:00:00 by philosopher       #+#    #+#             */
-/*   Updated: 2025/03/13 17:06:05 by kclaudan         ###   ########.fr       */
+/*   Updated: 2025/03/13 21:41:33 by kclaudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@
  */
 void	cleanup_simulation(t_simulation *sim)
 {
-	/* À implémenter */
+	free(sim->philosophers);
+	destroy_mutexes(sim);
+	free(sim->forks);
 }
 
 /**

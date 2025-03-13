@@ -6,7 +6,7 @@
 /*   By: kclaudan <kclaudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:00:00 by philosopher       #+#    #+#             */
-/*   Updated: 2025/03/13 15:55:14 by kclaudan         ###   ########.fr       */
+/*   Updated: 2025/03/13 21:07:41 by kclaudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,11 @@ int	should_take_forks_in_reverse(t_philosopher *philo)
  */
 void	smart_think_delay(t_philosopher *philo)
 {
-	/* À implémenter */
+	int delay;
+
+	if (philo->id % 2 == 0)
+		delay = 100;
+	else
+		delay = 0;
+	precise_sleep(delay);
 }

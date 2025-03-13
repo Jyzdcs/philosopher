@@ -6,7 +6,7 @@
 /*   By: kclaudan <kclaudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:00:00 by philosopher       #+#    #+#             */
-/*   Updated: 2025/03/13 15:59:29 by kclaudan         ###   ########.fr       */
+/*   Updated: 2025/03/13 21:07:03 by kclaudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@
  */
 void	take_forks(t_philosopher *philo)
 {
-	/* À implémenter */
+	pthread_mutex_lock(&philo->sim->forks[philo->left_fork]);
+	pthread_mutex_lock(&philo->sim->forks[philo->right_fork]);
+	log_state(philo->sim, philo->id, "has taken a fork");
+	log_state(philo->sim, philo->id, "has taken a fork");
 }
 
 /**
@@ -38,7 +41,10 @@ void	take_forks(t_philosopher *philo)
  */
 void	eat(t_philosopher *philo)
 {
-	/* À implémenter */
+	philo->last_meal_time = get_timestamp_ms();
+	philo->meals_eaten++;
+	precise_sleep(philo->sim->config.time_to_eat);
+	log_state(philo->sim, philo->id, "is eating");
 }
 
 /**
@@ -51,5 +57,6 @@ void	eat(t_philosopher *philo)
  */
 void	put_down_forks(t_philosopher *philo)
 {
-	/* À implémenter */
+	pthread_mutex_unlock(&philo->sim->forks[philo->left_fork]);
+	pthread_mutex_unlock(&philo->sim->forks[philo->right_fork]);
 }

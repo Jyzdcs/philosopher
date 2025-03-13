@@ -6,7 +6,7 @@
 /*   By: kclaudan <kclaudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:00:00 by philosopher       #+#    #+#             */
-/*   Updated: 2025/03/13 15:59:29 by kclaudan         ###   ########.fr       */
+/*   Updated: 2025/03/13 21:35:04 by kclaudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,15 @@
  */
 int	create_threads(t_simulation *sim)
 {
-	/* À implémenter */
+	int	i;
+
+	i = 0;
+	while (i < sim->config.number_of_philosophers)
+	{
+		pthread_create(&sim->philosophers[i].thread, NULL, philosopher_routine,
+			&sim->philosophers[i]);
+		i++;
+	}
 	return (0);
 }
 
@@ -38,6 +46,13 @@ int	create_threads(t_simulation *sim)
  */
 int	join_threads(t_simulation *sim)
 {
-	/* À implémenter */
+	int i;
+
+	i = 0;
+	while (i < sim->config.number_of_philosophers)
+	{
+		pthread_join(sim->philosophers[i].thread, NULL);
+		i++;
+	}
 	return (0);
 }

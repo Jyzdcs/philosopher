@@ -6,7 +6,7 @@
 /*   By: kclaudan <kclaudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:00:00 by philosopher       #+#    #+#             */
-/*   Updated: 2025/03/13 19:22:58 by kclaudan         ###   ########.fr       */
+/*   Updated: 2025/03/13 21:43:32 by kclaudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	init_philosophers(t_simulation *sim)
 		sim->philosophers[i].right_fork = (i + 1)
 			% sim->config.number_of_philosophers;
 		sim->philosophers[i].sim = sim;
-		sim->philosophers[i].thread = NULL;
 		i++;
 	}
 	return (0);
