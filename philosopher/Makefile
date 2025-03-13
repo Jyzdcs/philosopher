@@ -5,58 +5,51 @@
 #                                                     +:+ +:+         +:+      #
 #    By: kclaudan <kclaudan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/01/01 00:00:00 by user42            #+#    #+#              #
-#    Updated: 2025/03/13 14:22:16 by kclaudan         ###   ########.fr        #
+#    Created: 2023/03/13 12:00:00 by philosopher       #+#    #+#              #
+#    Updated: 2025/03/13 15:55:41 by kclaudan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror -pthread
-RM = rm -f
 
-INCLUDES = -I./includes
+SRCS_DIR = srcs
+INCS_DIR = includes
+OBJS_DIR = objs
 
-SRCS_DIR = srcs/
-INIT_DIR = $(SRCS_DIR)init/
-ACTIONS_DIR = $(SRCS_DIR)actions/
-MONITORING_DIR = $(SRCS_DIR)monitoring/
-UTILS_DIR = $(SRCS_DIR)utils/
-CLEANUP_DIR = $(SRCS_DIR)cleanup/
+SRCS = main.c \
+	   init/parse_args.c \
+	   init/init_simulation.c \
+	   init/init_philosophers.c \
+	   init/init_mutexes.c \
+	   init/threads.c \
+	   lifecycle/philosopher_routine.c \
+	   lifecycle/actions.c \
+	   lifecycle/states.c \
+	   time/timing.c \
+	   monitor/monitor.c \
+	   utils/cleanup.c \
+	   utils/strategy.c \
+	   utils/helpers.c
 
-SRCS = $(SRCS_DIR)main.c \
-	$(INIT_DIR)parse_args.c \
-	$(INIT_DIR)init_simulation.c \
-	$(INIT_DIR)init_philosophers.c \
-	$(INIT_DIR)init_mutexes.c \
-	$(INIT_DIR)thread_management.c \
-	$(ACTIONS_DIR)philosopher_routine.c \
-	$(ACTIONS_DIR)eating.c \
-	$(ACTIONS_DIR)sleeping_thinking.c \
-	$(ACTIONS_DIR)deadlock_prevention.c \
-	$(MONITORING_DIR)monitor.c \
-	$(MONITORING_DIR)death_check.c \
-	$(UTILS_DIR)time_utils.c \
-	$(UTILS_DIR)print_utils.c \
-	$(UTILS_DIR)str_utils.c \
-	$(CLEANUP_DIR)cleanup.c
-
-OBJS = $(SRCS:.c=.o)
+OBJS = $(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
 
 all: $(NAME)
+
+$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -I$(INCS_DIR) -c $< -o $@
 
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
-%.o: %.c
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
-
 clean:
-	$(RM) $(OBJS)
+	rm -rf $(OBJS_DIR)
 
 fclean: clean
-	$(RM) $(NAME)
+	rm -f $(NAME)
 
 re: fclean all
 

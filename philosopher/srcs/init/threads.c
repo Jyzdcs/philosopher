@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_args.c                                       :+:      :+:    :+:   */
+/*   threads.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kclaudan <kclaudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,18 +13,30 @@
 #include "../../includes/philosophers.h"
 
 /**
- * Analyse et valide les arguments d'entrée du programme
+ * Crée un thread pour chaque philosophe
  *
- * @param argc Nombre d'arguments passés au programme
- * @param argv Tableau des arguments du programme
- * @param config Pointeur vers la structure de configuration à remplir
- * @return 0 en cas de succès, -1 en cas d'erreur de parsing
+ * @param sim Pointeur vers la structure de simulation
+ * @return 0 en cas de succès, -1 en cas d'erreur
  *
- * Vérifie que le nombre d'arguments est correct (5 ou 6),
- * convertit et valide les arguments numériques,
- * remplit la structure de configuration avec les valeurs.
+ * Crée un thread pour chaque philosophe avec pthread_create.
+ * Passe la structure du philosophe comme argument à la routine.
  */
-int	parse_args(int argc, char **argv, t_config *config)
+int	create_threads(t_simulation *sim)
+{
+	/* À implémenter */
+	return (0);
+}
+
+/**
+ * Attend la fin de tous les threads avec pthread_join
+ *
+ * @param sim Pointeur vers la structure de simulation
+ * @return 0 en cas de succès, -1 en cas d'erreur
+ *
+ * Attend la fin de tous les threads avec pthread_join.
+ * Gère les erreurs potentielles lors de la jonction.
+ */
+int	join_threads(t_simulation *sim)
 {
 	/* À implémenter */
 	return (0);

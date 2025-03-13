@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_mutexes.c                                     :+:      :+:    :+:   */
+/*   timing.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kclaudan <kclaudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,30 +13,41 @@
 #include "../../includes/philosophers.h"
 
 /**
- * Initialise tous les mutex nécessaires à la synchronisation
+ * Récupère le timestamp actuel en millisecondes
  *
- * @param sim Pointeur vers la structure de simulation
- * @return 0 en cas de succès, -1 en cas d'erreur
+ * @return Timestamp actuel en millisecondes
  *
- * Initialise un mutex pour chaque fourchette, un mutex pour l'affichage
- * (pour éviter que les messages se mélangent) et un mutex pour protéger
- * la vérification de la mort des philosophes.
+ * Utilise gettimeofday pour obtenir le temps actuel en millisecondes.
  */
-int	init_mutexes(t_simulation *sim)
+long	get_timestamp_ms(void)
 {
 	/* À implémenter */
 	return (0);
 }
 
 /**
- * Détruit proprement tous les mutex initialisés
+ * Calcule le temps écoulé depuis le début de la simulation
  *
  * @param sim Pointeur vers la structure de simulation
+ * @return Temps écoulé en millisecondes
  *
- * Détruit tous les mutex créés pour les fourchettes et la synchronisation.
- * Libère la mémoire associée.
+ * Calcule la différence entre le timestamp actuel et le timestamp de départ.
  */
-void	destroy_mutexes(t_simulation *sim)
+long	get_elapsed_time(t_simulation *sim)
+{
+	/* À implémenter */
+	return (0);
+}
+
+/**
+ * Implémente une attente précise pendant la durée spécifiée
+ *
+ * @param duration_ms Durée d'attente en millisecondes
+ *
+ * Utilise usleep avec de petits intervalles pour une meilleure précision.
+ * Évite la dérive temporelle sur de longues périodes.
+ */
+void	precise_sleep(long duration_ms)
 {
 	/* À implémenter */
 }
