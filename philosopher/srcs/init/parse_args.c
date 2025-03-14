@@ -36,9 +36,10 @@ int	parse_args(int argc, char **argv, t_config *config)
 		return (printf("Error: Invalid time to eat\n"));
 	if (ft_atoi_strict(argv[4], &config->time_to_sleep) != 0)
 		return (printf("Error: Invalid time to sleep\n"));
-	if (argc == 6 && ft_atoi_strict(argv[5], &config->number_of_meals) != 0)
+	if (argc == 6 && ft_atoi_strict(argv[5], &config->number_of_meals) > -1)
 		config->must_eat_count = 1;
-	else
-		config->must_eat_count = 0;
+	else if (argc == 6 && ft_atoi_strict(argv[5], &config->number_of_meals) ==
+		-1)
+		return (printf("Error: Invalid number of meals\n"));
 	return (0);
 }
