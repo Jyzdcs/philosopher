@@ -6,7 +6,7 @@
 /*   By: kclaudan <kclaudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:00:00 by philosopher       #+#    #+#             */
-/*   Updated: 2025/03/13 21:07:15 by kclaudan         ###   ########.fr       */
+/*   Updated: 2025/03/14 16:50:02 by kclaudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
  */
 void	sleep_philosopher(t_philosopher *philo)
 {
-	precise_sleep(philo->sim->config.time_to_sleep);
 	log_state(philo->sim, philo->id, "is sleeping");
+	precise_sleep(philo->sim->config.time_to_sleep);
 }
 
 /**
@@ -54,7 +54,6 @@ void	log_state(t_simulation *sim, int philo_id, char *message)
 {
 	pthread_mutex_lock(&sim->print_mutex);
 	if (!sim->someone_died)
-		printf("%lld %d %s\n", get_timestamp_ms() - sim->start_time, philo_id,
-			message);
+		printf("%lld %d %s\n", get_elapsed_time(sim), philo_id, message);
 	pthread_mutex_unlock(&sim->print_mutex);
 }

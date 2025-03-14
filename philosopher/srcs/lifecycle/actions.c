@@ -6,7 +6,7 @@
 /*   By: kclaudan <kclaudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:00:00 by philosopher       #+#    #+#             */
-/*   Updated: 2025/03/13 21:07:03 by kclaudan         ###   ########.fr       */
+/*   Updated: 2025/03/14 16:49:47 by kclaudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ void	take_forks(t_philosopher *philo)
  */
 void	eat(t_philosopher *philo)
 {
-	philo->last_meal_time = get_timestamp_ms();
+	philo->last_meal_time = get_elapsed_time(philo->sim);
 	philo->meals_eaten++;
-	precise_sleep(philo->sim->config.time_to_eat);
 	log_state(philo->sim, philo->id, "is eating");
+	precise_sleep(philo->sim->config.time_to_eat);
 }
 
 /**

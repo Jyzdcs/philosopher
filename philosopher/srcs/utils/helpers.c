@@ -6,7 +6,7 @@
 /*   By: kclaudan <kclaudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:00:00 by philosopher       #+#    #+#             */
-/*   Updated: 2025/03/13 17:24:07 by kclaudan         ###   ########.fr       */
+/*   Updated: 2025/03/14 17:15:39 by kclaudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ char	*get_state_message(int state)
 	return (NULL);
 }
 
+/**
  * Fonction de journalisation pour le débogage
  *
  * @param sim Pointeur vers la structure de simulation

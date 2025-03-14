@@ -6,7 +6,7 @@
 /*   By: kclaudan <kclaudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:00:00 by philosopher       #+#    #+#             */
-/*   Updated: 2025/03/13 19:22:37 by kclaudan         ###   ########.fr       */
+/*   Updated: 2025/03/14 17:37:14 by kclaudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ typedef struct s_philosopher
 
 typedef struct s_simulation
 {
+	pthread_t			monitor_thread;
+	/* Thread de surveillance des philosophes */
 	t_config config;             /* Configuration de la simulation */
 	t_philosopher *philosophers; /* Tableau dynamique des philosophes */
 	pthread_mutex_t *forks;      /* Tableau de mutex (un par fourchette) */
@@ -119,7 +121,6 @@ void					smart_think_delay(t_philosopher *philo);
 /* Prototypes des fonctions utilitaires */
 
 int						ft_atoi_strict(const char *str, int *result);
-void					ft_usleep(int microseconds);
 char					*get_state_message(int state);
 void					debug_log(t_simulation *sim, char *format, ...);
 
