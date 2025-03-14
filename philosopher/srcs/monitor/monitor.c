@@ -24,8 +24,21 @@
  */
 void	*monitor_routine(void *arg)
 {
-	/* À implémenter */
-	return (NULL);
+	t_simulation	*sim;
+	t_philosopher	*philo;
+
+	sim = (t_simulation *)arg;
+	while (1)
+	{
+		philo = sim->philosophers;
+		while (philo < sim->philosophers + sim->config.number_of_philosophers)
+		{
+			if (check_philosopher_death(philo))
+				announce_death(sim, philo->id);
+			philo++;
+		}
+		return (NULL);
+	}
 }
 
 /**
@@ -67,5 +80,8 @@ int	all_philosophers_ate_enough(t_simulation *sim)
  */
 void	announce_death(t_simulation *sim, int philo_id)
 {
-	/* À implémenter */
+	pthread_mutex_lock(&sim->print_mutex);
+	printf("%lld %d died\n", get_timestamp_ms() - sim->start_time, philo_id);
+	pthread_mutex_unlock(&sim->print_mutex);
+	sim->someone_died = 1;
 }
