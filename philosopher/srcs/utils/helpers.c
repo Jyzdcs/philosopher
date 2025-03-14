@@ -26,7 +26,7 @@ int	ft_atoi_strict(const char *str, int *result)
 	if (!str || !result)
 		return (-1);
 	*result = 0;
-	while (*str == ' ')
+	while ((9 <= *str && *str <= 13) || *str == ' ')
 		str++;
 	if (*str == '-')
 		return (-1);
@@ -43,18 +43,6 @@ int	ft_atoi_strict(const char *str, int *result)
 }
 
 /**
- * Version améliorée de usleep avec meilleure précision
- *
- * @param microseconds Temps d'attente en microsecondes
- *
- * Utilise une boucle active pour les délais courts.
- */
-void	ft_usleep(int microseconds)
-{
-	/* À implémenter */
-}
-
-/**
  * Convertit un code d'état en message formaté
  *
  * @param state Code d'état (entier)
@@ -64,11 +52,15 @@ void	ft_usleep(int microseconds)
  */
 char	*get_state_message(int state)
 {
-	/* À implémenter */
+	if (state == 0)
+		return ("is thinking");
+	else if (state == 1)
+		return ("is eating");
+	else if (state == 2)
+		return ("is sleeping");
 	return (NULL);
 }
 
-/**
  * Fonction de journalisation pour le débogage
  *
  * @param sim Pointeur vers la structure de simulation
