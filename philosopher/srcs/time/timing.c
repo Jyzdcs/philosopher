@@ -37,8 +37,7 @@ long long	get_timestamp_ms(void)
  */
 long long	get_elapsed_time(t_simulation *sim)
 {
-	/* À implémenter */
-	return (0);
+	return (get_timestamp_ms() - sim->start_time);
 }
 
 /**
