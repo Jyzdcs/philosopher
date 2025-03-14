@@ -6,7 +6,7 @@
 /*   By: kclaudan <kclaudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:00:00 by philosopher       #+#    #+#             */
-/*   Updated: 2025/03/14 17:23:26 by kclaudan         ###   ########.fr       */
+/*   Updated: 2025/03/14 18:13:01 by kclaudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,19 @@
 int	parse_args(int argc, char **argv, t_config *config)
 {
 	if (argc != 5 && argc != 6)
-		error_exit(NULL, "Invalid number of arguments");
+		return (handle_error(NULL, -1, "Invalid number of arguments"));
 	if (ft_atoi_strict(argv[1], &config->number_of_philosophers) != 0)
-		error_exit(NULL, "Invalid number of philosophers");
+		return (handle_error(NULL, -1, "Invalid number of philosophers"));
 	if (ft_atoi_strict(argv[2], &config->time_to_die) != 0)
-		error_exit(NULL, "Invalid time to die");
+		return (handle_error(NULL, -1, "Invalid time to die"));
 	if (ft_atoi_strict(argv[3], &config->time_to_eat) != 0)
-		error_exit(NULL, "Invalid time to eat");
+		return (handle_error(NULL, -1, "Invalid time to eat"));
 	if (ft_atoi_strict(argv[4], &config->time_to_sleep) != 0)
-		error_exit(NULL, "Invalid time to sleep");
+		return (handle_error(NULL, -1, "Invalid time to sleep"));
 	if (argc == 6 && ft_atoi_strict(argv[5], &config->number_of_meals) > -1)
 		config->must_eat_count = 1;
 	else if (argc == 6 && ft_atoi_strict(argv[5], &config->number_of_meals) ==
 		-1)
-		error_exit(NULL, "Invalid number of meals");
+		return (handle_error(NULL, -1, "Invalid number of meals"));
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: kclaudan <kclaudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:00:00 by philosopher       #+#    #+#             */
-/*   Updated: 2025/03/14 17:19:23 by kclaudan         ###   ########.fr       */
+/*   Updated: 2025/03/14 18:15:21 by kclaudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void	error_exit(t_simulation *sim, char *message)
  */
 int	handle_error(t_simulation *sim, int error_code, char *message)
 {
-	cleanup_simulation(sim);
 	printf("Error: %s\n", message);
 	return (error_code);
 }

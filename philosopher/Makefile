@@ -6,11 +6,11 @@
 #    By: kclaudan <kclaudan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/13 12:00:00 by philosopher       #+#    #+#              #
-#    Updated: 2025/03/13 17:09:25 by kclaudan         ###   ########.fr        #
+#    Updated: 2025/03/14 18:08:36 by kclaudan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = philo
+NAME = philosopher
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -pthread

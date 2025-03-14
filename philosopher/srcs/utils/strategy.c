@@ -6,7 +6,7 @@
 /*   By: kclaudan <kclaudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:00:00 by philosopher       #+#    #+#             */
-/*   Updated: 2025/03/13 21:07:41 by kclaudan         ###   ########.fr       */
+/*   Updated: 2025/03/14 18:05:19 by kclaudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
  */
 void	init_eating_strategy(t_simulation *sim)
 {
-	/* À implémenter */
 }
 
 /**
@@ -40,7 +39,6 @@ void	init_eating_strategy(t_simulation *sim)
  */
 int	should_take_forks_in_reverse(t_philosopher *philo)
 {
-	/* À implémenter */
 	return (0);
 }
 
