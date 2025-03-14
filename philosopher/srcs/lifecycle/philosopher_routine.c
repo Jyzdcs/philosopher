@@ -33,10 +33,11 @@ void	*philosopher_routine(void *arg)
 		put_down_forks(philo);
 		sleep_philosopher(philo);
 		think(philo);
-		precise_sleep(philo->sim->config.time_to_sleep);
-		if (philo->sim->config.number_of_meals > 0)
-			philo->meals_eaten++;
-		if (philo->meals_eaten >= philo->sim->config.number_of_meals
+		// precise_sleep(philo->sim->config.time_to_sleep);
+		if (get_elapsed_time(philo->sim) > philo->sim->config.time_to_die)
+			announce_death(philo->sim, philo->id);
+		if ((philo->sim->config.must_eat_count == 1
+				&& philo->meals_eaten >= philo->sim->config.number_of_meals)
 			|| philo->sim->someone_died)
 			break ;
 	}
