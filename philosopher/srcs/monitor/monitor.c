@@ -6,7 +6,7 @@
 /*   By: kclaudan <kclaudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:00:00 by philosopher       #+#    #+#             */
-/*   Updated: 2025/03/14 17:16:40 by kclaudan         ###   ########.fr       */
+/*   Updated: 2025/03/14 17:54:17 by kclaudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,17 @@ void	*monitor_routine(void *arg)
 		while (philo < sim->philosophers + sim->config.number_of_philosophers)
 		{
 			if (check_philosopher_death(philo))
+			{
 				announce_death(sim, philo->id);
+				return (NULL);
+			}
 			philo++;
 		}
 		if (all_philosophers_ate_enough(sim))
+		{
+			sim->all_ate_enough = 1;
 			return (NULL);
+		}
 	}
 }
 
