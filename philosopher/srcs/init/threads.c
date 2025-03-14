@@ -6,7 +6,7 @@
 /*   By: kclaudan <kclaudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:00:00 by philosopher       #+#    #+#             */
-/*   Updated: 2025/03/14 18:55:30 by kclaudan         ###   ########.fr       */
+/*   Updated: 2025/03/14 19:28:09 by kclaudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int	join_threads(t_simulation *sim)
 	int i;
 
 	i = 0;
+	pthread_join(sim->monitor_thread, NULL);
 	while (i < sim->config.number_of_philosophers)
 	{
 		pthread_join(sim->philosophers[i].thread, NULL);

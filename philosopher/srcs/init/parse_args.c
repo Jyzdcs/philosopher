@@ -6,7 +6,7 @@
 /*   By: kclaudan <kclaudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:00:00 by philosopher       #+#    #+#             */
-/*   Updated: 2025/03/14 18:13:01 by kclaudan         ###   ########.fr       */
+/*   Updated: 2025/03/14 19:18:53 by kclaudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,7 @@ int	parse_args(int argc, char **argv, t_config *config)
 	else if (argc == 6 && ft_atoi_strict(argv[5], &config->number_of_meals) ==
 		-1)
 		return (handle_error(NULL, -1, "Invalid number of meals"));
+	else
+		config->must_eat_count = -1;
 	return (0);
 }
