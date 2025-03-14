@@ -6,7 +6,7 @@
 /*   By: kclaudan <kclaudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:00:00 by philosopher       #+#    #+#             */
-/*   Updated: 2025/03/14 17:47:51 by kclaudan         ###   ########.fr       */
+/*   Updated: 2025/03/14 18:55:30 by kclaudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,22 @@ int	create_threads(t_simulation *sim)
 			&sim->philosophers[i]);
 		i++;
 	}
+	return (0);
+}
+
+/**
+ * Crée un thread pour le philosophe unique
+ *
+ * @param sim Pointeur vers la structure de simulation
+ * @return 0 en cas de succès, -1 en cas d'erreur
+ *
+ * Crée un thread pour le philosophe unique avec pthread_create.
+ * Passe la structure du philosophe comme argument à la routine.
+ */
+int	create_single_thread(t_simulation *sim)
+{
+	pthread_create(&sim->philosophers[0].thread, NULL,
+		philosopher_routine_single, &sim->philosophers[0]);
 	return (0);
 }
 

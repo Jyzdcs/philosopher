@@ -6,7 +6,7 @@
 /*   By: kclaudan <kclaudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:00:00 by philosopher       #+#    #+#             */
-/*   Updated: 2025/03/14 17:37:14 by kclaudan         ###   ########.fr       */
+/*   Updated: 2025/03/14 18:55:56 by kclaudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,9 @@ void					destroy_mutexes(t_simulation *sim);
 /* Prototypes des fonctions de threads */
 
 int						create_threads(t_simulation *sim);
+int						create_single_thread(t_simulation *sim);
 void					*philosopher_routine(void *arg);
+void					*philosopher_routine_single(void *arg);
 int						join_threads(t_simulation *sim);
 
 /* Prototypes des fonctions du cycle de vie */
