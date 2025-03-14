@@ -6,7 +6,7 @@
 /*   By: kclaudan <kclaudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:00:00 by philosopher       #+#    #+#             */
-/*   Updated: 2025/03/14 18:55:56 by kclaudan         ###   ########.fr       */
+/*   Updated: 2025/03/14 20:32:28 by kclaudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ typedef struct s_simulation
 	/* Mutex pour éviter que les messages ne se mélangent */
 	pthread_mutex_t		death_mutex;
 	/* Mutex protégeant les vérifications de mort */
+	pthread_mutex_t		monitor_mutex;
+	/* Mutex pour la surveillance des philosophes */
 	int					someone_died;
 	/* Flag indiquant si un philosophe est mort (1) ou non (0) */
 	int					all_ate_enough;

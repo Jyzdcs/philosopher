@@ -6,7 +6,7 @@
 /*   By: kclaudan <kclaudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:00:00 by philosopher       #+#    #+#             */
-/*   Updated: 2025/03/14 19:26:46 by kclaudan         ###   ########.fr       */
+/*   Updated: 2025/03/14 20:33:29 by kclaudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,25 @@ void	*monitor_routine(void *arg)
 		philo = sim->philosophers;
 		while (philo < sim->philosophers + sim->config.number_of_philosophers)
 		{
+			pthread_mutex_lock(&sim->monitor_mutex);
 			if (check_philosopher_death(philo))
 			{
 				announce_death(sim, philo->id);
+				pthread_mutex_unlock(&sim->monitor_mutex);
 				return (NULL);
 			}
 			philo++;
+			pthread_mutex_unlock(&sim->monitor_mutex);
 		}
+		pthread_mutex_lock(&sim->monitor_mutex);
 		if (sim->config.must_eat_count != -1
 			&& all_philosophers_ate_enough(sim))
 		{
 			sim->all_ate_enough = 1;
+			pthread_mutex_unlock(&sim->monitor_mutex);
 			return (NULL);
 		}
+		pthread_mutex_unlock(&sim->monitor_mutex);
 	}
 }
 
