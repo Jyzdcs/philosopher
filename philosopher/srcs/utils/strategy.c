@@ -6,7 +6,7 @@
 /*   By: kclaudan <kclaudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:00:00 by philosopher       #+#    #+#             */
-/*   Updated: 2025/03/14 18:05:19 by kclaudan         ###   ########.fr       */
+/*   Updated: 2025/03/15 19:33:21 by kclaudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@
  *
  * Configure une stratégie pour éviter les deadlocks
 
-	* (ex: philosophes pairs/impairs prennent les fourchettes dans un ordre différent).
+
+	* (ex: philosophes pairs/impairs prennent les
+	fourchettes dans un ordre différent).
  * Peut introduire un léger délai pour les philosophes pairs/impairs.
  */
 void	init_eating_strategy(t_simulation *sim)
@@ -53,7 +55,7 @@ int	should_take_forks_in_reverse(t_philosopher *philo)
  */
 void	smart_think_delay(t_philosopher *philo)
 {
-	int delay;
+	int	delay;
 
 	if (philo->id % 2 == 0)
 		delay = 100;

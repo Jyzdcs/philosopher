@@ -6,7 +6,7 @@
 /*   By: kclaudan <kclaudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:00:00 by philosopher       #+#    #+#             */
-/*   Updated: 2025/03/14 17:15:39 by kclaudan         ###   ########.fr       */
+/*   Updated: 2025/03/15 19:36:47 by kclaudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
  *
  * Vérifie les overflows et les caractères non numériques.
  */
-int	ft_atoi_strict(const char *str, int *result)
+int	atoi_strict(const char *str, int *result)
 {
 	if (!str || !result)
 		return (-1);
@@ -72,5 +72,9 @@ char	*get_state_message(int state)
  */
 void	debug_log(t_simulation *sim, char *format, ...)
 {
-	/* À implémenter */
+	va_list	args;
+
+	va_start(args, format);
+	vprintf(format, args);
+	va_end(args);
 }

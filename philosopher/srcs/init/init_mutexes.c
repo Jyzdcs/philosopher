@@ -6,7 +6,7 @@
 /*   By: kclaudan <kclaudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:00:00 by philosopher       #+#    #+#             */
-/*   Updated: 2025/03/14 19:57:04 by kclaudan         ###   ########.fr       */
+/*   Updated: 2025/03/15 19:31:54 by kclaudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	init_mutexes(t_simulation *sim)
  */
 void	destroy_mutexes(t_simulation *sim)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < sim->config.number_of_philosophers)

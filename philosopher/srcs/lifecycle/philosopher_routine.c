@@ -6,7 +6,7 @@
 /*   By: kclaudan <kclaudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:00:00 by philosopher       #+#    #+#             */
-/*   Updated: 2025/03/15 14:35:21 by kclaudan         ###   ########.fr       */
+/*   Updated: 2025/03/15 19:31:49 by kclaudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,9 @@ void	*philosopher_routine(void *arg)
  */
 void	*philosopher_routine_single(void *arg)
 {
-	t_philosopher *philo;
+	t_philosopher	*philo;
 
 	philo = (t_philosopher *)arg;
-
 	pthread_mutex_lock(&philo->sim->forks[philo->left_fork]);
 	log_state(philo->sim, philo->id, "has taken a fork");
 	precise_sleep(philo->sim->config.time_to_die);

@@ -6,13 +6,12 @@
 /*   By: kclaudan <kclaudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:00:00 by philosopher       #+#    #+#             */
-/*   Updated: 2025/03/15 13:37:14 by kclaudan         ###   ########.fr       */
+/*   Updated: 2025/03/15 19:36:38 by kclaudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILOSOPHERS_H
 # define PHILOSOPHERS_H
-
 # include <limits.h>
 # include <pthread.h>
 # include <stdio.h>
@@ -21,51 +20,60 @@
 # include <unistd.h>
 
 /* Structures de données nécessaires */
-
 typedef struct s_config
 {
-	int number_of_philosophers; /* Nombre de philosophes autour de la table */
-	int					time_to_die;
+	/* Nombre de philosophes autour de la table */
+	int					number_of_philosophers;
 	/* Délai en ms au-delà duquel un philosophe meurt s'il n'a pas mangé */
-	int					time_to_eat;
+	int					time_to_die;
 	/* Durée en ms que prend un philosophe pour manger */
-	int					time_to_sleep;
+	int					time_to_eat;
 	/* Durée en ms pendant laquelle un philosophe dort */
-	int					number_of_meals;
+	int					time_to_sleep;
 	/* Nombre optionnel de repas pour arrêter la simulation */
-	int					must_eat_count;
+	int					number_of_meals;
 	/* Flag indiquant si number_of_meals est spécifié (1) ou non (0) */
+	int					must_eat_count;
 }						t_config;
 
 typedef struct s_philosopher
 {
-	int id;          /* Numéro du philosophe (de 1 à N) */
-	int meals_eaten; /* Compteur de repas consommés */
-	long long			last_meal_time;
+	/* Numéro du philosophe (de 1 à N) */
+	int					id;
+	/* Compteur de repas consommés */
+	int					meals_eaten;
 	/* Moment du dernier repas (pour surveiller la mort) */
-	int left_fork;    /* Index de la fourchette à sa gauche */
-	int right_fork;   /* Index de la fourchette à sa droite */
-	pthread_t thread; /* Thread qui exécute la routine du philosophe */
-	struct s_simulation	*sim;
+	long long			last_meal_time;
+	/* Index de la fourchette à sa gauche */
+	int					left_fork;
+	/* Index de la fourchette à sa droite */
+	int					right_fork;
+	/* Thread qui exécute la routine du philosophe */
+	pthread_t			thread;
 	/* Pointeur vers la simulation (accès aux données partagées) */
+	struct s_simulation	*sim;
 }						t_philosopher;
 
 typedef struct s_simulation
 {
-	pthread_t			monitor_thread;
 	/* Thread de surveillance des philosophes */
-	t_config config;             /* Configuration de la simulation */
-	t_philosopher *philosophers; /* Tableau dynamique des philosophes */
-	pthread_mutex_t *forks;      /* Tableau de mutex (un par fourchette) */
-	pthread_mutex_t		print_mutex;
+	pthread_t			monitor_thread;
+	/* Configuration de la simulation */
+	t_config			config;
+	/* Tableau dynamique des philosophes */
+	t_philosopher		*philosophers;
+	/* Tableau de mutex (un par fourchette) */
+	pthread_mutex_t		*forks;
 	/* Mutex pour éviter que les messages ne se mélangent */
-	pthread_mutex_t		death_mutex;
+	pthread_mutex_t		print_mutex;
 	/* Mutex protégeant les vérifications de mort */
-	int					someone_died;
+	pthread_mutex_t		death_mutex;
 	/* Flag indiquant si un philosophe est mort (1) ou non (0) */
+	int					someone_died;
+	/* Flag indiquant si tous les philosophes ont assez mangé */
 	int					all_ate_enough;
 	/* Flag indiquant si tous les philosophes ont assez mangé */
-	long long start_time; /* Timestamp de début de la simulation (ms) */
+	long long			start_time;
 }						t_simulation;
 
 /* Prototypes des fonctions d'initialisation */
@@ -122,7 +130,7 @@ void					smart_think_delay(t_philosopher *philo);
 
 /* Prototypes des fonctions utilitaires */
 
-int						ft_atoi_strict(const char *str, int *result);
+int						atoi_strict(const char *str, int *result);
 char					*get_state_message(int state);
 void					debug_log(t_simulation *sim, char *format, ...);
 

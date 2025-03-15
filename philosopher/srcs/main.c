@@ -6,7 +6,7 @@
 /*   By: kclaudan <kclaudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:00:00 by philosopher       #+#    #+#             */
-/*   Updated: 2025/03/15 18:42:42 by kclaudan         ###   ########.fr       */
+/*   Updated: 2025/03/15 19:30:36 by kclaudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
  */
 int	main(int argc, char **argv)
 {
-	t_simulation sim;
-	t_config config;
+	t_simulation	sim;
+	t_config		config;
 
 	if (parse_args(argc, argv, &config) < 0)
 		return (1);

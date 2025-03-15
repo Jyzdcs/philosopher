@@ -6,7 +6,7 @@
 /*   By: kclaudan <kclaudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:00:00 by philosopher       #+#    #+#             */
-/*   Updated: 2025/03/14 19:28:09 by kclaudan         ###   ########.fr       */
+/*   Updated: 2025/03/15 19:32:05 by kclaudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	create_single_thread(t_simulation *sim)
  */
 int	join_threads(t_simulation *sim)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	pthread_join(sim->monitor_thread, NULL);
