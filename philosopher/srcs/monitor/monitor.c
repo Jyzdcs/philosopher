@@ -6,7 +6,7 @@
 /*   By: kclaudan <kclaudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:00:00 by philosopher       #+#    #+#             */
-/*   Updated: 2025/03/15 13:53:32 by kclaudan         ###   ########.fr       */
+/*   Updated: 2025/03/15 15:16:50 by kclaudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,9 +104,9 @@ int	all_philosophers_ate_enough(t_simulation *sim)
 void	announce_death(t_simulation *sim, int philo_id)
 {
 	pthread_mutex_lock(&sim->print_mutex);
-	printf("%lld %d died\n", get_timestamp_ms() - sim->start_time, philo_id);
-	pthread_mutex_unlock(&sim->print_mutex);
 	pthread_mutex_lock(&sim->death_mutex);
+	printf("%lld %d died\n", get_timestamp_ms() - sim->start_time, philo_id);
 	sim->someone_died = 1;
 	pthread_mutex_unlock(&sim->death_mutex);
+	pthread_mutex_unlock(&sim->print_mutex);
 }
