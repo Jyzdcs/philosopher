@@ -6,7 +6,7 @@
 /*   By: kclaudan <kclaudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:00:00 by philosopher       #+#    #+#             */
-/*   Updated: 2025/03/14 16:50:02 by kclaudan         ###   ########.fr       */
+/*   Updated: 2025/03/15 14:47:16 by kclaudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,9 @@ void	think(t_philosopher *philo)
 void	log_state(t_simulation *sim, int philo_id, char *message)
 {
 	pthread_mutex_lock(&sim->print_mutex);
+	pthread_mutex_lock(&sim->death_mutex);
 	if (!sim->someone_died)
 		printf("%lld %d %s\n", get_elapsed_time(sim), philo_id, message);
+	pthread_mutex_unlock(&sim->death_mutex);
 	pthread_mutex_unlock(&sim->print_mutex);
 }

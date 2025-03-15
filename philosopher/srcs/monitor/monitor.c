@@ -6,7 +6,7 @@
 /*   By: kclaudan <kclaudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:00:00 by philosopher       #+#    #+#             */
-/*   Updated: 2025/03/14 20:33:29 by kclaudan         ###   ########.fr       */
+/*   Updated: 2025/03/15 13:53:32 by kclaudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,25 +33,19 @@ void	*monitor_routine(void *arg)
 		philo = sim->philosophers;
 		while (philo < sim->philosophers + sim->config.number_of_philosophers)
 		{
-			pthread_mutex_lock(&sim->monitor_mutex);
 			if (check_philosopher_death(philo))
 			{
 				announce_death(sim, philo->id);
-				pthread_mutex_unlock(&sim->monitor_mutex);
 				return (NULL);
 			}
 			philo++;
-			pthread_mutex_unlock(&sim->monitor_mutex);
 		}
-		pthread_mutex_lock(&sim->monitor_mutex);
 		if (sim->config.must_eat_count != -1
 			&& all_philosophers_ate_enough(sim))
 		{
 			sim->all_ate_enough = 1;
-			pthread_mutex_unlock(&sim->monitor_mutex);
 			return (NULL);
 		}
-		pthread_mutex_unlock(&sim->monitor_mutex);
 	}
 }
 
@@ -65,10 +59,15 @@ void	*monitor_routine(void *arg)
  */
 int	check_philosopher_death(t_philosopher *philo)
 {
+	int	death;
+
+	death = 0;
+	pthread_mutex_lock(&philo->sim->death_mutex);
 	if (philo->last_meal_time
 		+ philo->sim->config.time_to_die < get_elapsed_time(philo->sim))
-		return (1);
-	return (0);
+		death = 1;
+	pthread_mutex_unlock(&philo->sim->death_mutex);
+	return (death);
 }
 
 /**
@@ -107,5 +106,7 @@ void	announce_death(t_simulation *sim, int philo_id)
 	pthread_mutex_lock(&sim->print_mutex);
 	printf("%lld %d died\n", get_timestamp_ms() - sim->start_time, philo_id);
 	pthread_mutex_unlock(&sim->print_mutex);
+	pthread_mutex_lock(&sim->death_mutex);
 	sim->someone_died = 1;
+	pthread_mutex_unlock(&sim->death_mutex);
 }

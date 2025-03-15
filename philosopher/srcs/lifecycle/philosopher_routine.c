@@ -6,7 +6,7 @@
 /*   By: kclaudan <kclaudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:00:00 by philosopher       #+#    #+#             */
-/*   Updated: 2025/03/14 20:33:43 by kclaudan         ###   ########.fr       */
+/*   Updated: 2025/03/15 14:35:21 by kclaudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,22 +24,21 @@
 void	*philosopher_routine(void *arg)
 {
 	t_philosopher	*philo;
+	int				end_condition;
 
 	philo = (t_philosopher *)arg;
-	while (1)
+	end_condition = 0;
+	while (!end_condition)
 	{
 		take_forks(philo);
 		eat(philo);
 		put_down_forks(philo);
 		sleep_philosopher(philo);
 		think(philo);
-		pthread_mutex_lock(&philo->sim->monitor_mutex);
+		pthread_mutex_lock(&philo->sim->death_mutex);
 		if (philo->sim->someone_died || philo->sim->all_ate_enough)
-		{
-			pthread_mutex_unlock(&philo->sim->monitor_mutex);
-			break ;
-		}
-		pthread_mutex_unlock(&philo->sim->monitor_mutex);
+			end_condition = 1;
+		pthread_mutex_unlock(&philo->sim->death_mutex);
 	}
 	return (NULL);
 }
