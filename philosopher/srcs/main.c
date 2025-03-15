@@ -6,7 +6,7 @@
 /*   By: kclaudan <kclaudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:00:00 by philosopher       #+#    #+#             */
-/*   Updated: 2025/03/14 18:54:31 by kclaudan         ###   ########.fr       */
+/*   Updated: 2025/03/15 18:42:42 by kclaudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	main(int argc, char **argv)
 	if (config.number_of_philosophers == 1)
 	{
 		create_single_thread(&sim);
-		join_threads(&sim);
+		pthread_join(sim.philosophers[0].thread, NULL);
 		cleanup_simulation(&sim);
 		return (0);
 	}

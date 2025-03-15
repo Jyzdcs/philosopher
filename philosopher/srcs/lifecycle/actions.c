@@ -6,7 +6,7 @@
 /*   By: kclaudan <kclaudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:00:00 by philosopher       #+#    #+#             */
-/*   Updated: 2025/03/15 15:27:25 by kclaudan         ###   ########.fr       */
+/*   Updated: 2025/03/15 18:47:41 by kclaudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	take_forks(t_philosopher *philo)
 	int	first_fork;
 	int	second_fork;
 
-	// Détermine quelle fourchette a l'index le plus petit
 	if (philo->left_fork < philo->right_fork)
 	{
 		first_fork = philo->left_fork;
@@ -37,10 +36,8 @@ void	take_forks(t_philosopher *philo)
 		first_fork = philo->right_fork;
 		second_fork = philo->left_fork;
 	}
-	// Verrouille toujours la fourchette avec l'index le plus petit en premier
 	pthread_mutex_lock(&philo->sim->forks[first_fork]);
 	log_state(philo->sim, philo->id, "has taken a fork");
-	// Puis verrouille la fourchette avec l'index le plus grand
 	pthread_mutex_lock(&philo->sim->forks[second_fork]);
 	log_state(philo->sim, philo->id, "has taken a fork");
 }
@@ -57,8 +54,10 @@ void	take_forks(t_philosopher *philo)
  */
 void	eat(t_philosopher *philo)
 {
+	pthread_mutex_lock(&philo->sim->death_mutex);
 	philo->last_meal_time = get_elapsed_time(philo->sim);
 	philo->meals_eaten++;
+	pthread_mutex_unlock(&philo->sim->death_mutex);
 	log_state(philo->sim, philo->id, "is eating");
 	precise_sleep(philo->sim->config.time_to_eat);
 }
