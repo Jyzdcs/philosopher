@@ -6,7 +6,7 @@
 /*   By: kclaudan <kclaudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:00:00 by philosopher       #+#    #+#             */
-/*   Updated: 2025/03/17 13:44:02 by kclaudan         ###   ########.fr       */
+/*   Updated: 2025/03/17 14:13:57 by kclaudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,8 @@ void	take_forks(t_philosopher *philo)
  */
 void	eat(t_philosopher *philo)
 {
-	long long	last_meal_time_tmp;
-
-	last_meal_time_tmp = get_elapsed_time(philo->sim);
 	pthread_mutex_lock(&philo->sim->death_mutex);
-	philo->last_meal_time = last_meal_time_tmp;
+	philo->last_meal_time = get_elapsed_time(philo->sim);;
 	philo->meals_eaten++;
 	pthread_mutex_unlock(&philo->sim->death_mutex);
 	log_state(philo->sim, philo->id, "is eating");

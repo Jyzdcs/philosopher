@@ -6,7 +6,7 @@
 /*   By: kclaudan <kclaudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:00:00 by philosopher       #+#    #+#             */
-/*   Updated: 2025/03/17 13:44:14 by kclaudan         ###   ########.fr       */
+/*   Updated: 2025/03/17 14:27:45 by kclaudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,10 @@ void	*monitor_routine(void *arg)
 {
 	t_simulation	*sim;
 	t_philosopher	*philo;
-	int				shortest_time;
 
 	sim = (t_simulation *)arg;
 	while (1)
 	{
-		// Trouver le délai de vérification optimal
-		shortest_time = sim->config.time_to_die / 10;
-		if (shortest_time > 10)
-			shortest_time = 10;
-		// Maximum 10ms pour la précision de détection de mort
 		philo = sim->philosophers;
 		while (philo < sim->philosophers + sim->config.number_of_philosophers)
 		{
@@ -52,10 +46,10 @@ void	*monitor_routine(void *arg)
 			sim->all_ate_enough = 1;
 			return (NULL);
 		}
-		// Pause stratégique pour réduire la charge CPU
-		usleep(shortest_time * 1000); // Conversion en microsecondes
+		precise_sleep(1);
 	}
 }
+
 
 /**
  * Vérifie si un philosophe a dépassé son temps maximal sans manger
@@ -121,8 +115,8 @@ void	announce_death(t_simulation *sim, int philo_id)
 	timestamp = get_timestamp_ms() - sim->start_time;
 	pthread_mutex_lock(&sim->print_mutex);
 	pthread_mutex_lock(&sim->death_mutex);
-	printf("%lld %d died\n", timestamp, philo_id);
 	sim->someone_died = 1;
+	printf("%lld %d died\n", timestamp, philo_id);
 	pthread_mutex_unlock(&sim->death_mutex);
 	pthread_mutex_unlock(&sim->print_mutex);
 }
