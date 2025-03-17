@@ -6,7 +6,7 @@
 /*   By: kclaudan <kclaudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:00:00 by philosopher       #+#    #+#             */
-/*   Updated: 2025/03/17 14:27:45 by kclaudan         ###   ########.fr       */
+/*   Updated: 2025/03/17 14:55:43 by kclaudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,14 @@ void	*monitor_routine(void *arg)
 		if (sim->config.must_eat_count != -1
 			&& all_philosophers_ate_enough(sim))
 		{
+			pthread_mutex_lock(&sim->death_mutex);
 			sim->all_ate_enough = 1;
+			pthread_mutex_unlock(&sim->death_mutex);
 			return (NULL);
 		}
 		precise_sleep(1);
 	}
 }
-
 
 /**
  * Vérifie si un philosophe a dépassé son temps maximal sans manger
