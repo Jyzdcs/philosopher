@@ -6,7 +6,7 @@
 /*   By: kclaudan <kclaudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:00:00 by philosopher       #+#    #+#             */
-/*   Updated: 2025/03/15 19:31:51 by kclaudan         ###   ########.fr       */
+/*   Updated: 2025/03/15 23:35:36 by kclaudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	sleep_philosopher(t_philosopher *philo)
  */
 void	think(t_philosopher *philo)
 {
-	smart_think_delay(philo);
+	// smart_think_delay(philo);
 	log_state(philo->sim, philo->id, "is thinking");
 }
 

@@ -6,7 +6,7 @@
 /*   By: kclaudan <kclaudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:00:00 by philosopher       #+#    #+#             */
-/*   Updated: 2025/03/15 19:36:47 by kclaudan         ###   ########.fr       */
+/*   Updated: 2025/03/15 21:24:36 by kclaudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,22 +59,4 @@ char	*get_state_message(int state)
 	else if (state == 2)
 		return ("is sleeping");
 	return (NULL);
-}
-
-/**
- * Fonction de journalisation pour le débogage
- *
- * @param sim Pointeur vers la structure de simulation
- * @param format Format de la chaîne à afficher (comme printf)
- * @param ... Arguments variables pour le format
- *
- * Peut être activée/désactivée via une macro.
- */
-void	debug_log(t_simulation *sim, char *format, ...)
-{
-	va_list	args;
-
-	va_start(args, format);
-	vprintf(format, args);
-	va_end(args);
 }

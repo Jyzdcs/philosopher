@@ -6,7 +6,7 @@
 /*   By: kclaudan <kclaudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:00:00 by philosopher       #+#    #+#             */
-/*   Updated: 2025/03/15 19:36:38 by kclaudan         ###   ########.fr       */
+/*   Updated: 2025/03/15 21:24:44 by kclaudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,5 @@ void					smart_think_delay(t_philosopher *philo);
 
 int						atoi_strict(const char *str, int *result);
 char					*get_state_message(int state);
-void					debug_log(t_simulation *sim, char *format, ...);
 
 #endif
